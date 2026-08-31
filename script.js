@@ -22,15 +22,19 @@ let menuToggle = document.querySelector('.menu-toggle');
 let mobileMenu = document.getElementById('mobile-menu');
 
 if (menuToggle && mobileMenu) {
+  const setMenuState = function (isOpen) {
+    mobileMenu.classList.toggle('open', isOpen);
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  };
+
   menuToggle.addEventListener('click', function () {
-    let isOpen = mobileMenu.classList.toggle('open');
-    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    setMenuState(!mobileMenu.classList.contains('open'));
   });
 
   mobileMenu.querySelectorAll('a').forEach(function (link) {
     link.addEventListener('click', function () {
-      mobileMenu.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
+      setMenuState(false);
     });
   });
 }

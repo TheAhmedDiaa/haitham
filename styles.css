@@ -130,17 +130,18 @@ h3 {
   overflow: hidden;
   transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.mobile-menu.open {
-  max-height: 260px;
-}
 .mobile-menu a {
-  padding: 14px 32px;
+  padding: 15px 32px;
   font-size: 15px;
   color: var(--slate);
   border-top: 1px solid var(--line);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 .mobile-menu a:hover {
-  color: var(--brass);
+  color: var(--navy);
 }
 
 /* ---------- HERO ---------- */
@@ -500,6 +501,9 @@ footer {
 
 /* Responsive */
 @media (max-width: 640px) {
+  .topnav-inner {
+    padding: 16px 20px;
+  }
   .topnav-inner nav {
     display: none;
   }
@@ -507,7 +511,72 @@ footer {
     display: flex;
   }
   .mobile-menu {
+    display: none;
+    flex-direction: column;
+    width: calc(100% - 18px);
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 12px 26px rgba(20, 33, 61, 0.08);
+    overflow: hidden;
+    padding: 8px;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition:
+      opacity 0.22s ease,
+      transform 0.22s ease,
+      margin 0.22s ease;
+  }
+  .mobile-menu:not(.open) {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    margin-bottom: 0;
+  }
+  .mobile-menu.open {
     display: flex;
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    margin-bottom: 12px;
+  }
+  .mobile-menu a {
+    width: 100%;
+    padding: 18px 16px;
+    font-size: 18px;
+    line-height: 1.25;
+    font-weight: 700;
+    background: #f7f4ef;
+    color: var(--navy);
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    touch-action: manipulation;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  .mobile-menu a + a {
+    margin-top: 6px;
+  }
+  .mobile-menu a:hover,
+  .mobile-menu a:focus-visible,
+  .mobile-menu a:active {
+    background: rgba(155, 123, 46, 0.08);
+    color: var(--navy);
+    border-color: rgba(155, 123, 46, 0.22);
+    box-shadow: inset 0 0 0 1px rgba(155, 123, 46, 0.08);
   }
   .hero {
     padding: 64px 0 56px;
